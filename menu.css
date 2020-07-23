@@ -1,0 +1,149 @@
+body {
+    font-family: Roboto;
+    /*reset CSS pour enlever les marges de certains navigateurs:*/
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+}
+
+nav { 
+    width: 100%;
+    background-color: black;
+}
+
+nav > ul { /*séléctionne les élément ul enfants direct de nav donc le premier niveau du menu*/
+    /*reset CSS pour enlever les marges de certains navigateurs:*/
+    margin: 0px;
+    padding: 0px;
+}
+
+nav li { /* séléctionne tous les éléments li présents dans nav*/
+    list-style-type: none; /* permet de supprimer les puces*/
+}
+
+nav > ul > li { /*séléctionne les éléments li, enfants directs de la liste ul, qui elle même est enfant direct de l'élément nav*/
+    float: left; /*afin de placer les éléments du menu principale côte à côte*/
+    position: relative; /*Utile plus tard pour bien positionner nos sous-menus*/
+
+/*A ce niveau on va être confronté à une difficulté car, si un élément parent non-flottant possède des éléments flottants. Le CSS
+va supprimer la hauteur du parent et celui-ci ne va plus s'afficher.
+Ici ul est non-flottant mais possède des éléments li flottants.
+la solution la plus simple va être d'appliquer un overflow hidden à notre élément parent (ul) afin de forcer le CSS a lui rendre 
+sa hauteur.
+Cependant on ne peut l'utiliser dans le cas présent sinon on ne vera plus nos sous-menu.
+C'est pourquoi on va utiliser un hack CSS de type clear fixe qui va utiliser le pseudo élément after et les propriétés: content, 
+display et clear*/
+}
+
+nav > ul::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.submenu {
+    display: none; /*Afin de cacher les sous-menu*/
+}
+
+nav input[type=checkbox] {
+    display: none;  /*Cela va masquer la case à cocher (qui est là pour le responsive)*/
+}
+
+nav label {
+    display: none;  /*Cela va masquer le mot "Menu" (qui est là pour le responsive)*/
+}
+
+nav a {
+    display: inline-block;
+    text-decoration: none; /*Supprimer le trait de soulignement*/
+}
+
+nav > ul > li > a { /*Séléctionne les a du menu principal*/
+    padding: 20px 30px;
+    color: gold;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+nav > ul > li:hover a {
+    padding: 15px 30px; /*on enlève les 5px de border-top aux 20px que l'on avait pour le menu principal afin qu'il ne bouge pas 
+    lorsque la souris est dessus*/
+}
+
+nav li:hover .submenu { /*Ici on cible les sous-menus lorsque l'on passe la souris dessus*/
+    display: inline-block;
+    position: absolute;
+    top: 100%;
+    left: 0px; /*Afin que les sous-menus s'affichent juste en dessous de leur onglet*/
+    padding: 0px;
+    z-index: 1000; /*La propriété z-index définit le « z-order » d'un élément positionné. Lorsque des éléments se chevauchent, 
+    le z-order détermine l'ordre des différentes couches que formeront les éléments. Généralement, un élément couvrira un autre 
+    élément si sa valeur de z-index est supérieure à celle du deuxième élément.*/
+}
+
+.submenu li {
+    border-bottom: 1px solid gold;
+}
+
+
+.submenu li a {/*Séléctionne les a des sous-menu uniquement*/ 
+    padding: 15px 30px;
+    font-size: 16px;
+    color: goldenrod;
+    width: 100px;
+    
+}
+
+.menu:hover{
+    border-top: 5px solid gold; /*crée une bordure sur les onglets du menu principal lorsque la souris est dessus*/
+    background-color: RGBa(240, 230, 140, 0.2);
+}
+
+.menu .submenu { 
+    background-color: black;
+}
+
+.submenu li:hover a { /*Lorsque la souris est sur les titres des sous-menus*/
+    color: gold;
+    font-weight: bold;
+}
+
+.menu .submenu li:hover { 
+    background-color: RGBa(240, 230, 140, 0.1); /*Une couleur de fond à tous les sous-menu lorsque la souris est dessus*/
+}
+
+nav input[type=checkbox]:checked ~ ul { /*Ici la case est coché (donc checked) pour avoir le menu responsive*/
+    display: block;
+}
+
+                                    /*---------------RESPONSIVE---------------*/
+
+/*Au début dans le fichier html, on a crée une case à cocher avec l'élément input de type checkbox, l'idée étant d'afficher une 
+autre version du menu en CSS lorsque la case a été cochée et cela uniquement pour certaines tailles d'écran.*/
+
+@media screen and (max-width: 780px) {
+    .menu-mobile {
+        display: block;
+        color: gold;
+        background-color: black; 
+        border: 2px solid gold;
+        text-align: center;
+        padding: 10px 0px;
+        font-size: 30px;
+    }
+    nav ul {
+        display: none; /*Car on veut afficher le menu uniquement lorsque la "case" est cochée donc lorsque l'utilisateur clique sur 
+        le boutton "Menu".*/
+    }
+    nav ul li, nav ul li a{
+        width: 100%;
+        text-align: center;
+    }
+    nav ul li a, nav ul li:hover a {
+        padding: 10px 0px;
+    }
+    nav li:hover .submenu {
+        display: block;
+        position: static;
+    }
+}

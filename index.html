@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+    <!-- Le meta viewport sert a optimiser l'aspect responsive d'une page html 
+    (redimensionner une taille de fenêtre afin que le contenu l'occupe en entier) -->   
+    <title>Una bellissima navbar</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+
+<body>
+
+<nav>
+    <label for="menu-mobile" class="menu-mobile">Menu</label>
+    <input type="checkbox" id="menu-mobile" role="button">
+    <!--le label for ainsi que la checkbox permettent de créer une case à cocher pour 
+    rendre le menu responsive (voir dans CSS)-->
+
+    <ul>
+        <li class="menu"><a href="#">Home</a>  
+<!-- Je crée la classe "menu" pour cibler uniquement les pages principales du menu-->
+            <ul class="submenu">
+<!-- Je crée la classe "submenu" pour cibler uniquement les sous-menu-->
+                <li><a href="#">Eins</a></li>
+                <li><a href="#">Zwei</a></li>
+                <li><a href="#">Drei</a></li>
+            </ul>
+        </li>
+
+        <li class="menu"><a href="#">News</a>
+            <ul class="submenu">
+                <li><a href="#">Eins</a></li>
+                <li><a href="#">Zwei</a></li>
+                <li><a href="#">Drei</a></li>
+            </ul>
+        </li>
+
+        <li class="menu"><a href="#">About</a>
+            <ul class="submenu">
+                <li><a href="#">Eins</a></li>
+                <li><a href="#">Zwei</a></li>
+                <li><a href="#">Drei</a></li>
+            </ul>
+        </li>
+
+        <li class="menu"><a href="#">Contact</a>
+            <ul class="submenu">
+                <li><a href="#">Eins</a></li>
+                <li><a href="#">Zwei</a></li>
+                <li><a href="#">Drei</a></li>
+           </ul>
+        </li>
+          
+        <li class="menu"><a href="#">Poisson rouge</a>
+            <ul class="submenu">
+                <li><a href="#">Eins</a></li>
+                <li><a href="#">Zwei</a></li>
+                <li><a href="#">Drei</a></li>
+           </ul>
+        </li>
+
+    </ul>
+
+</nav>
+
+</body>
+
+</html>
